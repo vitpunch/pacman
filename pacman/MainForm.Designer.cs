@@ -32,6 +32,7 @@
             this.mainBox = new System.Windows.Forms.PictureBox();
             this.startButton = new System.Windows.Forms.Button();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,23 +53,37 @@
             this.startButton.Text = "Начать игру";
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            this.startButton.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.startButton_PreviewKeyDown);
             // 
             // mainTimer
             // 
-            this.mainTimer.Interval = 10;
+            this.mainTimer.Interval = 40;
             this.mainTimer.Tick += new System.EventHandler(this.MainTimer_Tick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(576, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 822);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.mainBox);
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "Игра Pac-Man";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.mainBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -77,6 +92,7 @@
         private System.Windows.Forms.PictureBox mainBox;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Timer mainTimer;
+        private System.Windows.Forms.Label label1;
     }
 }
 

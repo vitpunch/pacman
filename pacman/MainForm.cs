@@ -12,13 +12,44 @@ namespace pacman
 {
     public partial class MainForm : Form
     {
+
         public static Graphics canvas;
         Pacman pacman = new Pacman();
         public MainForm()
         {
-
             InitializeComponent();
             //buffer = new Bitmap(mainBox.Width,mainBox.Height);
+        }
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    pacman.newDirection = Direction.right;
+                    break;
+                case Keys.Left:
+                    pacman.newDirection = Direction.left;
+                    break;
+                case Keys.Up:
+                    pacman.newDirection = Direction.up;
+                    break;
+                case Keys.Down:
+                    pacman.newDirection = Direction.down;
+                    break;
+            }
+            label1.Text = e.KeyCode.ToString();
+        }
+        private void startButton_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Down:
+                case Keys.Up:
+                case Keys.Left:
+                case Keys.Right:
+                    e.IsInputKey = true;
+                    break;
+            }
         }
     }
 }

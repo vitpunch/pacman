@@ -6,6 +6,14 @@ using System.Windows.Forms;
 
 namespace pacman
 {
+    public enum Direction
+    {
+        up,
+        down,
+        left,
+        right,
+        stop
+    }
     static class Program
     {
         /// <summary>
