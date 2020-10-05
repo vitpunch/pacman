@@ -19,7 +19,8 @@ namespace pacman
             canvas = mainBox.CreateGraphics();
             canvas.Clear(Color.DarkBlue);
             //canvas.DrawPie(new Pen(Color.Black), 100, 100, 20, 20, 0, 45);
-
+            Labirint.Init();
+            Labirint.Print();
             mainTimer.Enabled = true;
         }
     }

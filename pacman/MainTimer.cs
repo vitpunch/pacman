@@ -14,8 +14,7 @@ namespace pacman
     {
         private void MainTimer_Tick(object sender, EventArgs e)
         {
-            ConsoleKeyInfo keyPressed;
-            //pacman.Draw();
+            //ConsoleKeyInfo keyPressed;
             pacman.Go();
 
         }

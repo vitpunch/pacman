@@ -14,7 +14,7 @@ namespace pacman
     {
 
         public static Graphics canvas;
-        Pacman pacman = new Pacman();
+        Pacman pacman = new Pacman(10);
         public MainForm()
         {
             InitializeComponent();
