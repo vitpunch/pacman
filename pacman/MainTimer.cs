@@ -15,6 +15,7 @@ namespace pacman
         private void MainTimer_Tick(object sender, EventArgs e)
         {
             //ConsoleKeyInfo keyPressed;
+            //Labirint.Print();
             pacman.Go();
 
         }

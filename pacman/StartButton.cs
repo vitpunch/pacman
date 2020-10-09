@@ -16,12 +16,13 @@ namespace pacman
         {
 
 
-            canvas = mainBox.CreateGraphics();
-            canvas.Clear(Color.DarkBlue);
+            
             //canvas.DrawPie(new Pen(Color.Black), 100, 100, 20, 20, 0, 45);
             Labirint.Init();
-            Labirint.Print();
+            Labirint.PrintAll();
+            MainForm.picture.Refresh();
             mainTimer.Enabled = true;
+            startButton.Enabled = false;
         }
     }
 }

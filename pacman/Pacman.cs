@@ -11,6 +11,8 @@ namespace pacman
 {
     class Pacman
     {
+        private int mouth = 45; //открытость рта в градусах
+        private int mouthDirection = 5; //направление движения рта - закрываем, + открываем
         private int x;
         private int y;
         private int speed;  //клетки в секунду
@@ -18,7 +20,7 @@ namespace pacman
         private int pixelShift;
         TimeCalculator timeCalculator;
         
-        Pen pen = new Pen(Color.Yellow);
+        Brush brush = new SolidBrush(Color.Yellow);
         Direction direction = Direction.right;
         public Direction newDirection = Direction.right;
         public Pacman (int speed)
@@ -33,19 +35,22 @@ namespace pacman
             speed = 10;
             timeCalculator = new TimeCalculator();
         }
-
         public void Go()
         {
             pixelShift = timeCalculator.PixelShift(speed);
-            Draw();
+            mouth += mouthDirection;
+            if (mouth > 45 || mouth < 0)
+                mouthDirection = -mouthDirection;
             shift += pixelShift;
             if (shift >19)
             {
                 shift -= 20;
                 GoCell();
             }
+            Labirint.PrintArroundDot(x, y);
+            Draw();
+            MainForm.picture.Refresh();
         }
-
         private void GoCell()
         {
             switch (direction)
@@ -65,27 +70,30 @@ namespace pacman
                 case Direction.stop:
                     break;
             }
-            direction = newDirection;
+            if (Labirint.MayPassToDot(x, y, newDirection))
+                direction = newDirection;
+            else
+                if (!Labirint.MayPassToDot(x, y, direction))
+                direction = Direction.stop;
         }
-
         public void Draw()
-        {
+        {            
             switch (direction)
             {
                 case Direction.right:
-                    MainForm.canvas.DrawPie(pen,x*20+shift,y*20,20,20,45-shift*2,270+shift*4);
+                    MainForm.canvas.FillPie(brush, x * 20 + shift, y * 20, 20, 20, 45 - mouth, 270 + mouth * 2);
                     break;
                 case Direction.left:
-                    MainForm.canvas.DrawPie(pen, x * 20 - shift, y * 20, 20, 20, 225 - shift * 2, 270 + shift * 4);
+                    MainForm.canvas.FillPie(brush, x * 20 - shift, y * 20, 20, 20, 225 - mouth, 270 + mouth * 2);
                     break;
                 case Direction.up:
-                    MainForm.canvas.DrawPie(pen, x * 20, y * 20-shift, 20, 20, 315 - shift * 2, 270 + shift * 4);
+                    MainForm.canvas.FillPie(brush, x * 20, y * 20-shift, 20, 20, 315 - mouth, 270 + mouth * 2);
                     break;
                 case Direction.down:
-                    MainForm.canvas.DrawPie(pen, x * 20, y * 20+shift, 20, 20, 135 - shift * 2, 270 + shift * 4);
+                    MainForm.canvas.FillPie(brush, x * 20, y * 20+shift, 20, 20, 135 - mouth, 270 + mouth * 2);
                     break;
                 case Direction.stop:
-                    MainForm.canvas.DrawPie(pen, x * 20, y * 20, 20, 20, 45 - shift * 2, 270 + shift * 4);
+                    MainForm.canvas.FillPie(brush, x * 20, y * 20, 20, 20, 45 - mouth, 270 + mouth * 2);
                     break;
             }
         }
@@ -93,6 +101,5 @@ namespace pacman
         {
             newDirection = newDirectionFromKb;
         }
-
     }
 }

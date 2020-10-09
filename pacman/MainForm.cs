@@ -14,11 +14,15 @@ namespace pacman
     {
 
         public static Graphics canvas;
-        Pacman pacman = new Pacman(10);
+        public static PictureBox picture;
+        Pacman pacman = new Pacman(7);
         public MainForm()
         {
             InitializeComponent();
-            //buffer = new Bitmap(mainBox.Width,mainBox.Height);
+            picture = mainBox;
+            picture.Image = new Bitmap(mainBox.Width,mainBox.Height);
+            canvas = Graphics.FromImage(picture.Image);
+            canvas.Clear(Color.DarkBlue);
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -51,5 +55,7 @@ namespace pacman
                     break;
             }
         }
+
+
     }
 }
