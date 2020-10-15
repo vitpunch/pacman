@@ -25,7 +25,7 @@ namespace pacman
                     map[j, i] = (char)reader[i * 30 + j];
                 }
         }
-        static char GetDot(int x,int y)
+        public static char GetDot(int x,int y)
         {
             if (x < 0 || x > 27 || y < 0 || y > 30)
                 return '*';
@@ -88,5 +88,10 @@ namespace pacman
             return true;
         }
 
+        public static void SetEmpty(int x, int y)
+        {
+            if (map[x, y] == '.')
+                map[x, y] = ' ';
+        }
     }
 }

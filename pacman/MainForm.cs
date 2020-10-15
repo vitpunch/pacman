@@ -55,7 +55,5 @@ namespace pacman
                     break;
             }
         }
-
-
     }
 }

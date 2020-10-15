@@ -23,6 +23,8 @@ namespace pacman
         Brush brush = new SolidBrush(Color.Yellow);
         Direction direction = Direction.right;
         public Direction newDirection = Direction.right;
+        public int eatedDots;
+
         public Pacman (int speed)
             : this()
         {
@@ -75,6 +77,11 @@ namespace pacman
             else
                 if (!Labirint.MayPassToDot(x, y, direction))
                 direction = Direction.stop;
+            if (Labirint.GetDot(x, y) == '.')
+            {
+                Labirint.SetEmpty(x, y);
+                eatedDots++;
+            }
         }
         public void Draw()
         {            
@@ -96,10 +103,6 @@ namespace pacman
                     MainForm.canvas.FillPie(brush, x * 20, y * 20, 20, 20, 45 - mouth, 270 + mouth * 2);
                     break;
             }
-        }
-        public void DirectionSwitching(Direction newDirectionFromKb)
-        {
-            newDirection = newDirectionFromKb;
         }
     }
 }

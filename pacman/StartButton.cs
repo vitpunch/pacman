@@ -14,9 +14,6 @@ namespace pacman
     {
         private void startButton_Click(object sender, EventArgs e)
         {
-
-
-            
             //canvas.DrawPie(new Pen(Color.Black), 100, 100, 20, 20, 0, 45);
             Labirint.Init();
             Labirint.PrintAll();

@@ -17,7 +17,7 @@ namespace pacman
             //ConsoleKeyInfo keyPressed;
             //Labirint.Print();
             pacman.Go();
-
+            EatedDot.Text = pacman.eatedDots.ToString();
         }
     }
 }
