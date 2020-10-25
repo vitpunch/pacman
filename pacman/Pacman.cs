@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Drawing;
 
 namespace pacman
 {
@@ -55,6 +48,17 @@ namespace pacman
         }
         private void GoCell()
         {
+            if (x == 1 && direction == Direction.left)
+            {
+                Labirint.PrintArroundDot(x,y);    
+                x = 28;
+            }
+
+            if (x == 26 && direction == Direction.right)
+            {
+                Labirint.PrintArroundDot(x,y);    
+                x = 1;
+            }
             switch (direction)
             {
                 case Direction.right:
